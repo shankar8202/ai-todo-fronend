@@ -19,7 +19,7 @@ export default function TodoApp() {
   const fetchTodos = async () => {
     try {
       setIsLoadingTodos(true);
-      const response = await fetch("http://localhost:5000/api/todos");
+      const response = await fetch(`${process.env.API}/api/todos/`);
       if (response.ok) {
         const data = await response.json();
         setTodos(data.todos || []);
@@ -39,7 +39,7 @@ export default function TodoApp() {
 
     setIsLoadingManual(true);
     try {
-      const response = await fetch("http://localhost:5000/api/todos/manual", {
+      const response = await fetch(`${process.env.API}/api/todos/manual`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -74,7 +74,7 @@ export default function TodoApp() {
     setIsLoadingAi(true);
     setAiResponse(null);
     try {
-      const response = await fetch("http://localhost:5000/api/todos/chat", {
+      const response = await fetch(`${process.env.API}/api/todos/chat`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
